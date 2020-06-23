@@ -1,0 +1,17 @@
+<h1>WELCOME</h1>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><%= link_to  "Sign up", new_registrant_registration_path %></li>
+               <% if registrant_signed_in? %>
+                  <li><%= link_to('Log Out', destroy_registrant_session_path, method: :delete) %></li>
+                <% else %>
+                 <li> <%= link_to('Log In', new_registrant_session_path) %></li>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+</nav>
+<%= render  "form" %>
+

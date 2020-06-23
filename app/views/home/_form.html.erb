@@ -1,0 +1,8 @@
+<%= form_with(:action=>"show", :controller=>"domains", :method=>:get) do |form| %>
+
+    <div class="field">
+    <%= text_field_tag :domain_name, params[:domain_name], :placeholder => "Search Domain Name" %>
+    <%= form.submit "Search" %>
+    </div>
+
+<% end %>
