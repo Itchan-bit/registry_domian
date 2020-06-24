@@ -1,4 +1,5 @@
 class DomainsController < ApplicationController
+  before_action :authenticate_registrant!
   before_action :set_domain, only: [:show, :edit, :update, :destroy]
 
  
@@ -46,7 +47,6 @@ class DomainsController < ApplicationController
       end
     end
   end
-
 
   def destroy
     @domain.destroy

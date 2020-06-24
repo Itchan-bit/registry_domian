@@ -2,7 +2,6 @@ class RegistrantsController < ApplicationController
   before_action :authenticate_registrant!
   before_action :set_registrant, only: [:show, :edit, :update, :destroy]
 
-
   def index
     @registrants = Registrant.all
   end
