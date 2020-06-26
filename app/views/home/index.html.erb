@@ -1,17 +1,26 @@
-<h1>WELCOME</h1>
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container">
-        <div class="collapse navbar-collapse" id="navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li><%= link_to  "Sign up", new_registrant_registration_path %></li>
-               <% if registrant_signed_in? %>
-                  <li><%= link_to('Log Out', destroy_registrant_session_path, method: :delete) %></li>
-                <% else %>
-                 <li> <%= link_to('Log In', new_registrant_session_path) %></li>
-                <% end %>
-            </ul>
-        </div>
-    </div>
-</nav>
-<%= render  "form" %>
+<h1>WELCOME HOMEE</h1>
+
+<p class="navbar-text float-right">
+<% if user_signed_in? %>
+  Logged in as <strong><%= current_user.email %></strong>.
+  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+<% else %>
+  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+<% end %>
+</p>
+
+<%= form_tag(search_page_path, :method => "get",   
+    class: 'navbar-form navbar-left') do %>  
+  <div class="input-group">  
+    <%= search_field_tag :search, params[:search], placeholder: "Search Domain", class: "form-control" %>  
+    <div class="input-group-btn">  
+      <%= button_tag "",:name => nil%>  
+    </div>  
+  </div>  
+<% end %>
+
+
+<td><%= link_to 'Domains', new_domain_path %></td>
 

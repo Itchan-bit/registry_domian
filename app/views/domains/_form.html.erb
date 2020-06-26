@@ -26,7 +26,42 @@
     <%= form.datetime_select :expiration_date %>
   </div>
 
+    <%= form.fields_for :price_attributes do |domain_price| %>
+    
+      <div class="field">
+        <%= domain_price.label :price_cents %>
+        <%= domain_price.text_field :price_cents, :readonly => true, id: 'price-cent'%>   
+            <select  id="domain_desired_attribute" onchange="getddl()">
+              <option value="1 year">1 year</option>
+              <option value="2 year">2 years</option>
+              <option value="5 year">5 years</option>
+              <option value="10 year">10 years</option>
+            </select>
+      </div>
+      <script>
+          // var cent = document.getElementById("price-cent");
+          // var period = document.getElementById("domain_desired_attribute");
+          // var domainPeriod = formid.ddlselect[formid.ddlselect.selectedIndex].text;
+          var form = document.getElementById("formid");
+          
+          //    console.log(domainPeriod);
+          //    if (domainPeriod === '1 year') {
+          //      cent.value = '35';
+          //    }
+         
+            var cent = document.getElementById("price-cent");
+            var period = document.getElementById("domain_desired_attribute").value;
+            var form = document.getElementById("formid");
+
+               if (period === '1 year') {
+                  cent.value = '35';
+               }
+         
+       </script>
+    <% end %>
+
   <div class="actions">
     <%= form.submit %>
   </div>
+  
 <% end %>

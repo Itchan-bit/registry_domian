@@ -1,10 +1,11 @@
 class RegistrantsController < ApplicationController
-  before_action :authenticate_registrant!
+  before_action :authenticate_user!
   before_action :set_registrant, only: [:show, :edit, :update, :destroy]
 
   def index
     @registrants = Registrant.all
   end
+
 
   def show
   end
@@ -14,14 +15,14 @@ class RegistrantsController < ApplicationController
     @registrant = Registrant.new
   end
 
-  
+
   def edit
   end
 
- 
-  def create
-    @registrant = Registrant.new(registrant_params)
 
+  def create
+
+    @registrant = Registrant.new(registrant_params)
     respond_to do |format|
       if @registrant.save
         format.html { redirect_to @registrant, notice: 'Registrant was successfully created.' }
@@ -56,12 +57,28 @@ class RegistrantsController < ApplicationController
   end
 
   private
- 
+
     def set_registrant
       @registrant = Registrant.find(params[:id])
+      puts @registrant
     end
 
     def registrant_params
-      params.require(:registrant).permit(:first_name, :last_name, :contact, :address)
+      params.require(:registrant).permit(:voice, :fax, :email, 
+        addresses_attributes: [
+          :id,
+          :street,
+          :city,
+          :state,
+          :postalcode,
+          :countrycode
+        ], 
+        postal_info_attributes:[
+          :id,
+          :name,
+          :organization
+        ]
+      )
+
     end
 end

@@ -1,23 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>First name:</strong>
-  <%= @registrant.first_name %>
+  <strong>Voice:</strong>
+  <%= @registrant.voice %>
 </p>
 
 <p>
-  <strong>Last name:</strong>
-  <%= @registrant.last_name %>
+  <strong>Fax:</strong>
+  <%= @registrant.fax %>
 </p>
 
 <p>
-  <strong>Contact:</strong>
-  <%= @registrant.contact %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @registrant.address %>
+  <strong>Email:</strong>
+  <%= @registrant.email %>
 </p>
 
 <%= link_to 'Edit', edit_registrant_path(@registrant) %> |

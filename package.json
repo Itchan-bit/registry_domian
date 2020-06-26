@@ -1,5 +1,5 @@
 {
-  "name": "registry_domain",
+  "name": "registry_domain_app",
   "private": true,
   "dependencies": {}
 }

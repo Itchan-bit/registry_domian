@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class AddDeviseToRegistrants < ActiveRecord::Migration[5.2]
+class AddDeviseToUsers < ActiveRecord::Migration[5.2]
   def self.up
-    change_table :registrants do |t|
+    change_table :users do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -37,10 +37,10 @@ class AddDeviseToRegistrants < ActiveRecord::Migration[5.2]
       # t.timestamps null: false
     end
 
-    add_index :registrants, :email,                unique: true
-    add_index :registrants, :reset_password_token, unique: true
-    # add_index :registrants, :confirmation_token,   unique: true
-    # add_index :registrants, :unlock_token,         unique: true
+    add_index :users, :email,                unique: true
+    add_index :users, :reset_password_token, unique: true
+    # add_index :users, :confirmation_token,   unique: true
+    # add_index :users, :unlock_token,         unique: true
   end
 
   def self.down

@@ -1,8 +1,9 @@
-<%= form_with(:action=>"show", :controller=>"domains", :method=>:get) do |form| %>
-
-    <div class="field">
-    <%= text_field_tag :domain_name, params[:domain_name], :placeholder => "Search Domain Name" %>
-    <%= form.submit "Search" %>
-    </div>
-
+<%= form_tag(search_page_path, :method => "get",   
+    class: 'navbar-form navbar-left') do %>  
+  <div class="input-group">  
+    <%= search_field_tag :search, params[:search], placeholder: "Search Domain", class: "form-control" %>  
+    <div class="input-group-btn">  
+      <%= button_tag "",:name => nil%>  
+    </div>  
+  </div>  
 <% end %>

@@ -1,4 +1,5 @@
 <%= form_with(model: registrant, local: true) do |form| %>
+
   <% if registrant.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(registrant.errors.count, "error") %> prohibited this registrant from being saved:</h2>
@@ -12,24 +13,46 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
+    <%= form.label :voice %>
+    <%= form.text_field :voice %>
   </div>
 
   <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
+    <%= form.label :fax %>
+    <%= form.text_field :fax %>
   </div>
 
   <div class="field">
-    <%= form.label :contact %>
-    <%= form.text_field :contact %>
+    <%= form.label :email %>
+    <%= form.text_field :email %>
   </div>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
+  <%= form.fields_for :addresses_attributes do |a| %>
+        <div class="field">
+        <%= a.label :street %>
+        <%= a.text_field :street %>
+        </div>
+
+        <div class="field">
+          <%= a.label :city %>
+          <%= a.text_field :city %>
+        </div>
+
+        <div class="field">
+          <%= a.label :state %>
+          <%= a.text_field :state %>
+        </div>
+
+        <div class="field">
+          <%= a.label :postalcode %>
+          <%= a.text_field :postalcode %>
+        </div>
+
+        <div class="field">
+          <%= a.label :countrycode %>
+          <%= a.text_field :countrycode %>
+      </div>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>
