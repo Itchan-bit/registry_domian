@@ -33,7 +33,6 @@ class PaymentController < ApplicationController
             :total =>  "35",
             :currency =>  "USD" },
           :description =>  "This is the payment transaction description." }]})
-
 # if @payment.create
 #   @payment.id     # Payment Id
 # else
@@ -46,21 +45,21 @@ class PaymentController < ApplicationController
   end
 
   def execute
+    payment_id = params[:payment_id]
+    payer_id   = params[:payer_id]
     
-    payment = Payment.find("PAY-57363176S1057143SKE2HO3A")
+    payment = Payment.find(payment_id)
 
-    if payment.execute( :payer_id => "DUFRQ8GWYMJXC" )
+    if payment.execute( :payer_id => payer_id )
       # Success Message
       # Note that you'll need to `Payment.find` the payment again to access user info like shipping address
     else
       payment.error # Error Hash
     end
 
+ 
 
-
-    payment_id = params[:payment_id]
-    payer_id   = params[:payer_id]
-
+    transaction = Transaction.create(payment_id)
     render json: {payment_state: ''} # Fill in the the payment state
   end
 
